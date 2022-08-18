@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Boligrafo bic azul",
+    "price": 150,
+    "thumbnail": "https://aldina.com.ar/wp-content/uploads/2020/08/bic-cristal-trazo-fino-azul-1.jpg",
+    "id": 1
+  },
+  {
+    "title": "Block de hojas rayadas",
+    "price": 1230,
+    "thumbnail": "https://www.aclases.com/wp-content/uploads/2017/09/repuesto-rivadavia-con-banda-96-hojas-rayadas.jpg",
+    "id": 2
+  },
+  {
+    "title": "Regla transparente de 20 cm",
+    "price": 230,
+    "thumbnail": "https://www.casa-segal.com/wp-content/uploads/2019/02/regla-20cm-cristal-libreria-casa-segal-mendoza.jpg",
+    "id": 3
+  },
+  {
+    "title": "Cuaderno rayado de 48 hojas",
+    "price": 300,
+    "thumbnail": "https://cdn11.bigcommerce.com/s-3stx4pub31/images/stencil/1280x1280/products/5479/14673/cuaderno_rivadavia_-_rayado_lunares_-_rojo_-_50_hojas_-_tapa_dura__55540.1650486255.jpg?c=2",
+    "id": 4
+  }
+]

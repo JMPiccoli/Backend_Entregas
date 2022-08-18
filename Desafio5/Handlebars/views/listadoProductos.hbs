@@ -1,0 +1,31 @@
+<div class="d-flex flex-column">
+  <div class="mb-2">
+    <a class="btn btn-success text-white" href="http://localhost:8080/">Volver al
+      formulario</a>
+  </div>
+  <div>
+    <table class="table table-primary table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">Nombre</th>
+          <th class="text-center" scope="col">Precio</th>
+          <th class="text-center" scope="col">Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each productos}}
+          <tr>
+            <td class="text-center">{{this.title}}</td>
+            <td class="text-center">{{this.price}}</td>
+            <td class="text-center"><img
+                src={{this.thumbnail}}
+                style="width: 40px; height: 40px;"
+                class="img-thumbnail"
+                alt={{this.title}}
+              /></td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

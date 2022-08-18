@@ -1,0 +1,23 @@
+{
+  "name": "desafio5",
+  "version": "0.0.0",
+  "description": "Formulario productos y listado con plantilla Handlebars",
+  "main": "servidor.js",
+  "scripts": {
+    "start": "nodemon servidor.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JMPiccoli/Backend_Entregas.git"
+  },
+  "author": "Juan María Piccoli",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+
+}
