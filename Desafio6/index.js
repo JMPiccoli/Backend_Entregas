@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
 const { engine } = require("express-handlebars");
-const PORT = 8080;
+const PORT = 3030;
 const httpServer = require('http').createServer;
 const io = require('socket.io')(httpServer, {
-    cors: { origin: '*'}
+    cors: { origin: '*'},
 });
 const Contenedor = require("./Contenedor");
 const contenedor = new Contenedor("products.json");
@@ -34,9 +34,28 @@ let chat = [
   ]
   
 app.get("/", (req, res) => {
-    const productos = await contenedor.getAll();
+    const productos = contenedor.getAll();
     res.render('productlist', { products: productos, productsExist: true });
 });
+
+io.on('connection',(socket) => {
+  console.log('New connection');
+  io.socket.emit('products', productos);
+  io.socket.emit('chat', chat);
+
+
+  socket.on('newMessage', (msg) => {
+    chat.push(msg);
+    io.socket.emit('chat', chat);
+  });
+
+  socket.on('addProduct', (data) => {
+    productos.push(data);
+    io.socket.emit('products', productos);
+  });
+
+})
+
 
 const server = app.listen(PORT, () => {
     console.log(`Servidor http iniciado en el puerto ${server.address().port}`);
