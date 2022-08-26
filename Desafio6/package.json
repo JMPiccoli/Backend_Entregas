@@ -2,9 +2,9 @@
   "name": "desafio6",
   "version": "0.0.0",
   "description": "Formulario productos y listado con plantilla Handlebars",
-  "main": "servidor.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon servidor.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",

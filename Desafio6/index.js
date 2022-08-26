@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const { engine } = require("express-handlebars");
-const PORT = 3030;
-const httpServer = require('http').createServer;
+const PORT = 8080;
+const httpServer = require('http').createServer();
 const io = require('socket.io')(httpServer, {
     cors: { origin: '*'},
 });
+
 const Contenedor = require("./Contenedor");
 const contenedor = new Contenedor("products.json");
 
@@ -32,15 +33,16 @@ let chat = [
       date: new Date().toLocaleDateString()
     }
   ]
-  
+//const productos = contenedor.getAll();
+
 app.get("/", (req, res) => {
-    const productos = contenedor.getAll();
-    res.render('productlist', { products: productos, productsExist: true });
+  const productos = contenedor.getAll();
+    res.render('listadoProductos', { productos });
 });
 
 io.on('connection',(socket) => {
   console.log('New connection');
-  io.socket.emit('products', productos);
+  io.socket.emit('products', contenedor.getAll());
   io.socket.emit('chat', chat);
 
 
@@ -50,12 +52,16 @@ io.on('connection',(socket) => {
   });
 
   socket.on('addProduct', (data) => {
-    productos.push(data);
-    io.socket.emit('products', productos);
+    //productos.push(data);
+    const { body } = req;
+    const { title, price, thumbnail } = body;
+    const producto = { title, price: parseInt(price), thumbnail };
+    contenedor.save(producto);
+
+    io.socket.emit('products', contenedor.getAll());
   });
 
 })
-
 
 const server = app.listen(PORT, () => {
     console.log(`Servidor http iniciado en el puerto ${server.address().port}`);
