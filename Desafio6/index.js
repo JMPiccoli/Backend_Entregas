@@ -10,10 +10,14 @@ const io = require('socket.io')(httpServer, {
 const Contenedor = require("./Contenedor");
 const contenedor = new Contenedor("products.json");
 
+const Chat = require('./Chat')
+let chat = new Chat('./chat.json');
+
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({extended:true}));
 
+// PLANTILLA HANDLEBARS
 app.set("view engine", "hbs");
 app.set("views", "./views");
 app.engine(
@@ -26,18 +30,25 @@ app.engine(
   })
 );
 
-let chat = [
-    {
-      email:"admin@admin.com",
-      message:"Wellcome",
-      date: new Date().toLocaleDateString()
-    }
-  ]
+// let chat = [
+//     {
+//       email:"admin@admin.com",
+//       message:"Wellcome",
+//       date: new Date().toLocaleDateString()
+//     }
+//   ]
+
+
+  
+//=========== VARIABLES ===========//
+
+
 //const productos = contenedor.getAll();
 
 app.get("/", (req, res) => {
-  const productos = contenedor.getAll();
-    res.render('listadoProductos', { productos });
+  // const productos = contenedor.getAll();
+  // console.log(productos)
+    res.render('main', { productos });
 });
 
 io.on('connection',(socket) => {
@@ -63,9 +74,7 @@ io.on('connection',(socket) => {
 
 })
 
-const server = app.listen(PORT, () => {
-    console.log(`Servidor http iniciado en el puerto ${server.address().port}`);
+httpServer.listen(PORT, () => {
+  console.log(`Servidor http iniciado en el puerto ${PORT}`);
 });
-
-
 
